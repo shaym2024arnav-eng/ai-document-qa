@@ -34,7 +34,7 @@ function App() {
       setDocName(res.data.filename);
       setMessages([]);
     } catch (err) {
-      alert("Upload failed: " + err.message);
+      alert(err.response?.data?.message || "Upload failed. Please try again.");
     } finally {
       setUploading(false);
     }
@@ -42,7 +42,7 @@ function App() {
 
   const handleAsk = async (e) => {
     e.preventDefault();
-    if (!question || !docId) return;
+    if (!question.trim() || !docId) return;
 
     const userMessage = { role: "user", text: question };
     setMessages((prev) => [...prev, userMessage]);
@@ -60,7 +60,10 @@ function App() {
     } catch (err) {
       setMessages((prev) => [
         ...prev,
-        { role: "bot", text: "Error: " + err.message },
+        {
+          role: "bot",
+          text: err.response?.data?.message || "Something went wrong. Please try again.",
+        },
       ]);
     } finally {
       setAsking(false);
@@ -84,14 +87,14 @@ function App() {
           <div className="chat-messages">
             {messages.map((msg, i) => (
               <div key={i} className={`message ${msg.role}`}>
-                <p>{msg.text}</p>
+                <p className="message-text">{msg.text}</p>
                 {msg.sources && (
                   <details className="sources">
                     <summary>View sources</summary>
                     {msg.sources.map((src, j) => (
                       <div key={j} className="source-chunk">
                         <span className="score">
-                          Score: {src.score.toFixed(2)}
+                          Source {j + 1} · similarity {src.score.toFixed(2)}
                         </span>
                         <p>{src.text}</p>
                       </div>
@@ -109,6 +112,7 @@ function App() {
               placeholder="Ask a question about the document..."
               value={question}
               onChange={(e) => setQuestion(e.target.value)}
+              maxLength={1000}
             />
             <button type="submit" disabled={asking}>
               Ask

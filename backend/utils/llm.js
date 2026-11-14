@@ -15,14 +15,19 @@ async function generateAnswer(question, contextChunks) {
     .map((chunk, i) => `[Source ${i + 1}]: ${chunk.text}`)
     .join("\n\n");
 
-  const prompt = `You are a helpful assistant answering questions based only on the provided document context. If the answer isn't in the context, say you don't know based on the document.
+    const prompt = `You are a helpful assistant answering questions using only the numbered sources below, which are passages from the user's document.
 
-Context:
+Rules:
+- Use only information from the sources. Do not use outside knowledge.
+- After each fact, cite the source it came from, like [Source 1] or [Source 2].
+- If the sources do not contain the answer, reply exactly: "I couldn't find that in the document."
+
+Sources:
 ${context}
 
 Question: ${question}
 
-Answer the question clearly and concisely, based only on the context above.`;
+Answer clearly and concisely.`;
 
   const completion = await getClient().chat.completions.create({
     messages: [{ role: "user", content: prompt }],

@@ -165,3 +165,8 @@ h1 {
 .ask-form button:hover:not(:disabled) {
   background-color: #16a34a;
 }
+
+/* Keep line breaks and numbered lists in the AI's answer */
+.message-text {
+  white-space: pre-wrap;
+}
