@@ -9,6 +9,11 @@ const { generateEmbedding, cosineSimilarity } = require("../utils/embeddings");
 
 const upload = multer({ dest: "uploads/" });
 
+// backend/data is in .gitignore, so it doesn't exist on a fresh clone or
+// on Render. Create it on startup instead of crashing on the first upload.
+const DATA_DIR = path.join(__dirname, "..", "data");
+fs.mkdirSync(DATA_DIR, { recursive: true });
+
 // Upload a PDF, extract, chunk, and embed its text
 router.post("/upload", upload.single("file"), async (req, res) => {
   try {

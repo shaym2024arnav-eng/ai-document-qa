@@ -1,6 +1,14 @@
 const Groq = require("groq-sdk");
 
-const groq = new Groq({ apiKey: process.env.GROQ_API_KEY });
+// Groq retired llama-3.3-70b-versatile in August 2026. The model now comes
+// from .env so a future retirement is a one-line config change.
+const DEFAULT_MODEL = "openai/gpt-oss-120b";
+
+let groq = null;
+const getClient = () => {
+  if (!groq) groq = new Groq({ apiKey: process.env.GROQ_API_KEY });
+  return groq;
+};
 
 async function generateAnswer(question, contextChunks) {
   const context = contextChunks
@@ -16,13 +24,13 @@ Question: ${question}
 
 Answer the question clearly and concisely, based only on the context above.`;
 
-  const completion = await groq.chat.completions.create({
+  const completion = await getClient().chat.completions.create({
     messages: [{ role: "user", content: prompt }],
-    model: "llama-3.3-70b-versatile",
+    model: process.env.GROQ_MODEL || DEFAULT_MODEL,
     temperature: 0.3,
   });
 
   return completion.choices[0].message.content;
 }
 
-module.exports = { generateAnswer };
+module.exports = { generateAnswer, DEFAULT_MODEL };

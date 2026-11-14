@@ -2,7 +2,9 @@ import { useState } from "react";
 import axios from "axios";
 import "./App.css";
 
-const API_URL = "http://localhost:5000/api/documents";
+// Set VITE_API_URL in frontend/.env locally, or in Vercel when deployed.
+const API_BASE_URL = (import.meta.env.VITE_API_URL || "http://localhost:5000").replace(/\/$/, "");
+const API_URL = `${API_BASE_URL}/api/documents`;
 
 function App() {
   const [file, setFile] = useState(null);
