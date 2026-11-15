@@ -7,6 +7,18 @@
  * - Unanswerable question: correct only if it refuses. Anything else is
  *   counted as a hallucination (the model invented an answer).
  */
+
+/**
+ * Models often use typographic characters: narrow no-break spaces
+ * ("Forge\u202fWeek"), non-breaking hyphens and curly apostrophes.
+ * Normalise them so "Forge\u202fWeek" matches "forge week".
+ */
+const normalize = (text) =>
+  String(text || "")
+    .replace(/[\u00a0\u2000-\u200b\u202f\u205f\u3000]/g, " ")
+    .replace(/[\u2010-\u2015]/g, "-")
+    .replace(/[\u2018\u2019\u02bc]/g, "'");
+
 const REFUSAL_PATTERNS = [
   /couldn['’]?t find/i,
   /could not find/i,
@@ -19,15 +31,18 @@ const REFUSAL_PATTERNS = [
   /unable to (?:find|determine|answer)/i,
   /cannot (?:determine|answer|be determined)/i,
   /not (?:able|possible) to (?:determine|answer)/i,
+  /(?:i['’]?m|i am) not aware/i,
+  /(?:can['’]?t|cannot|can not) help with/i,
+  /(?:i['’]?m|i am) (?:sorry|afraid),? but i (?:don['’]?t|do not|can['’]?t|cannot)/i,
 ];
 
-const isRefusal = (answer) => REFUSAL_PATTERNS.some((re) => re.test(String(answer || "")));
+const isRefusal = (answer) => REFUSAL_PATTERNS.some((re) => re.test(normalize(answer)));
 
 const escapeRegex = (s) => s.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
 
 // Whole-word match so "2" doesn't match "24" and "60" doesn't match "600".
 const containsAnswer = (answer, accept) =>
-  accept.some((a) => new RegExp(`(^|[^\\w])${escapeRegex(a)}($|[^\\w])`, "i").test(String(answer || "")));
+  accept.some((a) => new RegExp(`(^|[^\\w])${escapeRegex(a)}($|[^\\w])`, "i").test(normalize(answer)));
 
 function grade(item, answer) {
   const refused = isRefusal(answer);
@@ -43,4 +58,4 @@ function grade(item, answer) {
   };
 }
 
-module.exports = { grade, isRefusal, containsAnswer };
+module.exports = { grade, isRefusal, containsAnswer, normalize };

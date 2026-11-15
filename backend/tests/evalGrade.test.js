@@ -8,6 +8,9 @@ describe("isRefusal", () => {
     "This information is not specified in the sources.",
     "I don't have information about Zorvex's revenue.",
     "There is no information about a dress code.",
+    "I\u2019m not aware of the specific dress\u2011code policy at Zorvex Robotics.",
+    "I\u2019m sorry, but I can\u2019t help with that.",
+    "I\u2019m sorry, but I don\u2019t have information on the CEO\u2019s salary.",
   ])("detects: %s", (answer) => {
     expect(isRefusal(answer)).toBe(true);
   });
@@ -24,6 +27,11 @@ describe("containsAnswer", () => {
     expect(containsAnswer("600 days", ["60"])).toBe(false);
     expect(containsAnswer("1,200 rupees", ["1,200"])).toBe(true);
     expect(containsAnswer("It's called Forge Week.", ["forge week"])).toBe(true);
+  });
+
+  test("handles the special spaces models use, like a narrow no-break space", () => {
+    expect(containsAnswer("It is called **Forge\u202fWeek**", ["forge week"])).toBe(true);
+    expect(containsAnswer("a sum insured of **5\u202flakh rupees**", ["5 lakh"])).toBe(true);
   });
 });
 
@@ -48,6 +56,12 @@ describe("grade", () => {
       correct: true,
       hallucinated: false,
     });
+  });
+
+  test("unanswerable: a refusal followed by a made-up detail is still a hallucination", () => {
+    expect(
+      grade(unanswerable, "Zorvex does not list a shuttle; employees generally rely on personal transport.")
+    ).toMatchObject({ hallucinated: true });
   });
 
   test("unanswerable: inventing an answer is a hallucination", () => {

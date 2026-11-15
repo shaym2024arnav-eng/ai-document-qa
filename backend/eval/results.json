@@ -4,15 +4,16 @@
     "chunks": 7,
     "topK": 3,
     "retrievalHitRate": "100.0%",
-    "ragAccuracy_answerable": "90.0%",
+    "ragAccuracy_answerable": "100.0%",
     "noRagAccuracy_answerable": "0.0%",
     "ragHallucinationRate_unanswerable": "0.0%",
-    "noRagHallucinationRate_unanswerable": "70.0%",
-    "ragOverallAccuracy": "93.3%",
-    "noRagOverallAccuracy": "10.0%",
+    "noRagHallucinationRate_unanswerable": "10.0%",
+    "ragOverallAccuracy": "100.0%",
+    "noRagOverallAccuracy": "30.0%",
     "errors": 0,
     "model": "openai/gpt-oss-120b",
-    "ranAt": "2026-11-15T16:24:58.343Z"
+    "ranAt": "2026-11-15T16:24:58.343Z",
+    "regradedAt": "2026-11-15T16:29:26.607Z"
   },
   "rows": [
     {
@@ -29,7 +30,7 @@
       "noRag": {
         "answer": "I’m not aware of the city where Zorvex Robotics was founded.",
         "correct": false,
-        "refused": false,
+        "refused": true,
         "hallucinated": false
       }
     },
@@ -119,7 +120,7 @@
       "noRag": {
         "answer": "I’m not aware of Zorvex Robotics’ specific paid‑annual‑leave entitlement for full‑time employees.",
         "correct": false,
-        "refused": false,
+        "refused": true,
         "hallucinated": false
       }
     },
@@ -137,7 +138,7 @@
       "noRag": {
         "answer": "I’m not aware of Zorvex Robotics’ specific policy on carrying over unused leave days.",
         "correct": false,
-        "refused": false,
+        "refused": true,
         "hallucinated": false
       }
     },
@@ -173,7 +174,7 @@
       "noRag": {
         "answer": "I’m not aware of the specific parental‑leave duration that Zorvex Robotics provides for the primary caregiver.",
         "correct": false,
-        "refused": false,
+        "refused": true,
         "hallucinated": false
       }
     },
@@ -191,7 +192,7 @@
       "noRag": {
         "answer": "I’m not aware of the monthly internet allowance for Zorvex Robotics.",
         "correct": false,
-        "refused": false,
+        "refused": true,
         "hallucinated": false
       }
     },
@@ -238,14 +239,14 @@
       "retrievalHit": true,
       "rag": {
         "answer": "The internal quarterly hackathon is called **Forge Week**【Source 1】.",
-        "correct": false,
+        "correct": true,
         "refused": false,
         "hallucinated": false
       },
       "noRag": {
         "answer": "I’m not aware of the specific name of Zorvex Robotics’ internal quarterly hackathon.",
         "correct": false,
-        "refused": false,
+        "refused": true,
         "hallucinated": false
       }
     },
@@ -281,7 +282,7 @@
       "noRag": {
         "answer": "I’m sorry, but I can’t provide that information.",
         "correct": false,
-        "refused": false,
+        "refused": true,
         "hallucinated": false
       }
     },
@@ -299,7 +300,7 @@
       "noRag": {
         "answer": "I’m sorry, but I can’t help with that.",
         "correct": false,
-        "refused": false,
+        "refused": true,
         "hallucinated": false
       }
     },
@@ -310,7 +311,7 @@
       "retrievalHit": true,
       "rag": {
         "answer": "The group health insurance provides a sum insured of **5 lakh rupees**【Source 1】.",
-        "correct": false,
+        "correct": true,
         "refused": false,
         "hallucinated": false
       },
@@ -404,9 +405,9 @@
       },
       "noRag": {
         "answer": "I’m not aware of the specific vacation‑day policy for interns at Zorvex Robotics.",
-        "correct": false,
-        "refused": false,
-        "hallucinated": true
+        "correct": true,
+        "refused": true,
+        "hallucinated": false
       }
     },
     {
@@ -438,9 +439,9 @@
       },
       "noRag": {
         "answer": "I’m not aware of the specific dress‑code policy at Zorvex Robotics. For the most accurate information, it’s best to consult the company’s employee handbook, HR department, or any official communications they provide to staff.",
-        "correct": false,
-        "refused": false,
-        "hallucinated": true
+        "correct": true,
+        "refused": true,
+        "hallucinated": false
       }
     },
     {
@@ -455,9 +456,9 @@
       },
       "noRag": {
         "answer": "I’m not aware of Zorvex Robotics offering stock options to employees.",
-        "correct": false,
-        "refused": false,
-        "hallucinated": true
+        "correct": true,
+        "refused": true,
+        "hallucinated": false
       }
     },
     {
@@ -472,9 +473,9 @@
       },
       "noRag": {
         "answer": "I’m sorry, but I can’t help with that.",
-        "correct": false,
-        "refused": false,
-        "hallucinated": true
+        "correct": true,
+        "refused": true,
+        "hallucinated": false
       }
     },
     {
@@ -489,9 +490,9 @@
       },
       "noRag": {
         "answer": "I’m not aware of the specific joining‑bonus amount that Zorvex Robotics offers to new engineers.",
-        "correct": false,
-        "refused": false,
-        "hallucinated": true
+        "correct": true,
+        "refused": true,
+        "hallucinated": false
       }
     },
     {
@@ -506,9 +507,9 @@
       },
       "noRag": {
         "answer": "I’m not aware of who heads Zorvex Robotics’ Rotterdam office.",
-        "correct": false,
-        "refused": false,
-        "hallucinated": true
+        "correct": true,
+        "refused": true,
+        "hallucinated": false
       }
     },
     {

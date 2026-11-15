@@ -9,6 +9,7 @@
  * Usage (from backend/):
  *   npm run eval                 # all 30 questions
  *   npm run eval -- --limit 5    # quick check
+ *   npm run eval -- --regrade    # re-score saved results, no LLM calls
  *
  * Writes eval/results.json and prints a summary.
  */
@@ -60,6 +61,57 @@ async function askWithoutRag(question) {
   return completion.choices[0].message.content;
 }
 
+function summarize(rows, { chunks }) {
+  const answerable = rows.filter((r) => r.type === "answerable");
+  const unanswerable = rows.filter((r) => r.type === "unanswerable");
+  const pct = (part, whole) => (whole.length ? `${((part / whole.length) * 100).toFixed(1)}%` : "n/a");
+  const count = (list, fn) => list.filter(fn).length;
+
+  return {
+    questions: rows.length,
+    chunks,
+    topK: TOP_K,
+    retrievalHitRate: pct(count(answerable, (r) => r.retrievalHit), answerable),
+    ragAccuracy_answerable: pct(count(answerable, (r) => r.rag.correct), answerable),
+    noRagAccuracy_answerable: pct(count(answerable, (r) => r.noRag.correct), answerable),
+    ragHallucinationRate_unanswerable: pct(count(unanswerable, (r) => r.rag.hallucinated), unanswerable),
+    noRagHallucinationRate_unanswerable: pct(count(unanswerable, (r) => r.noRag.hallucinated), unanswerable),
+    ragOverallAccuracy: pct(count(rows, (r) => r.rag.correct), rows),
+    noRagOverallAccuracy: pct(count(rows, (r) => r.noRag.correct), rows),
+    errors: count(rows, (r) => r.rag.error || r.noRag.error),
+    model: process.env.GROQ_MODEL || DEFAULT_MODEL,
+    ranAt: new Date().toISOString(),
+  };
+}
+
+/**
+ * Re-score saved answers in results.json with the current grader, without
+ * calling the LLM again. Use after fixing a grading rule.
+ */
+function regrade() {
+  const file = path.join(__dirname, "results.json");
+  const saved = JSON.parse(fs.readFileSync(file, "utf-8"));
+  const questions = JSON.parse(fs.readFileSync(path.join(__dirname, "questions.json"), "utf-8"));
+  const byId = Object.fromEntries(questions.map((q) => [q.id, q]));
+
+  const rows = saved.rows.map((row) => {
+    const item = byId[row.id];
+    const rescore = (r) => (r.error ? r : { answer: r.answer, ...grade(item, r.answer) });
+    return { ...row, rag: rescore(row.rag), noRag: rescore(row.noRag) };
+  });
+
+  const summary = {
+    ...summarize(rows, { chunks: saved.summary.chunks }),
+    model: saved.summary.model,
+    ranAt: saved.summary.ranAt,
+    regradedAt: new Date().toISOString(),
+  };
+  fs.writeFileSync(file, JSON.stringify({ summary, rows }, null, 2));
+
+  console.log("Re-graded saved answers (no LLM calls).");
+  console.table(summary);
+}
+
 async function main() {
   const handbook = fs.readFileSync(path.join(__dirname, "handbook.txt"), "utf-8");
   const questions = JSON.parse(fs.readFileSync(path.join(__dirname, "questions.json"), "utf-8")).slice(0, LIMIT);
@@ -108,26 +160,7 @@ async function main() {
     await sleep(DELAY_MS);
   }
 
-  const answerable = rows.filter((r) => r.type === "answerable");
-  const unanswerable = rows.filter((r) => r.type === "unanswerable");
-  const pct = (part, whole) => (whole.length ? `${((part / whole.length) * 100).toFixed(1)}%` : "n/a");
-  const count = (list, fn) => list.filter(fn).length;
-
-  const summary = {
-    questions: rows.length,
-    chunks: chunks.length,
-    topK: TOP_K,
-    retrievalHitRate: pct(count(answerable, (r) => r.retrievalHit), answerable),
-    ragAccuracy_answerable: pct(count(answerable, (r) => r.rag.correct), answerable),
-    noRagAccuracy_answerable: pct(count(answerable, (r) => r.noRag.correct), answerable),
-    ragHallucinationRate_unanswerable: pct(count(unanswerable, (r) => r.rag.hallucinated), unanswerable),
-    noRagHallucinationRate_unanswerable: pct(count(unanswerable, (r) => r.noRag.hallucinated), unanswerable),
-    ragOverallAccuracy: pct(count(rows, (r) => r.rag.correct), rows),
-    noRagOverallAccuracy: pct(count(rows, (r) => r.noRag.correct), rows),
-    errors: count(rows, (r) => r.rag.error || r.noRag.error),
-    model: process.env.GROQ_MODEL || DEFAULT_MODEL,
-    ranAt: new Date().toISOString(),
-  };
+  const summary = summarize(rows, { chunks: chunks.length });
 
   fs.writeFileSync(path.join(__dirname, "results.json"), JSON.stringify({ summary, rows }, null, 2));
 
@@ -136,11 +169,13 @@ async function main() {
   console.log("Full results (every answer) written to eval/results.json");
 }
 
-if (require.main === module) {
+if (require.main === module && args.includes("--regrade")) {
+  regrade();
+} else if (require.main === module) {
   main().catch((err) => {
     console.error(err.message);
     process.exit(1);
   });
 }
 
-module.exports = { withRateLimitRetry };
+module.exports = { withRateLimitRetry, summarize };
