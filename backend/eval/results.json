@@ -1,0 +1,549 @@
+{
+  "summary": {
+    "questions": 30,
+    "chunks": 7,
+    "topK": 3,
+    "retrievalHitRate": "100.0%",
+    "ragAccuracy_answerable": "90.0%",
+    "noRagAccuracy_answerable": "0.0%",
+    "ragHallucinationRate_unanswerable": "0.0%",
+    "noRagHallucinationRate_unanswerable": "70.0%",
+    "ragOverallAccuracy": "93.3%",
+    "noRagOverallAccuracy": "10.0%",
+    "errors": 0,
+    "model": "openai/gpt-oss-120b",
+    "ranAt": "2026-11-15T16:24:58.343Z"
+  },
+  "rows": [
+    {
+      "id": 1,
+      "type": "answerable",
+      "question": "In which city was Zorvex Robotics founded?",
+      "retrievalHit": true,
+      "rag": {
+        "answer": "Zorvex Robotics was founded in Pune. 【Source 1】",
+        "correct": true,
+        "refused": false,
+        "hallucinated": false
+      },
+      "noRag": {
+        "answer": "I’m not aware of the city where Zorvex Robotics was founded.",
+        "correct": false,
+        "refused": false,
+        "hallucinated": false
+      }
+    },
+    {
+      "id": 2,
+      "type": "answerable",
+      "question": "What is the name of Zorvex's best known product?",
+      "retrievalHit": true,
+      "rag": {
+        "answer": "Zorvex's best known product is the **Kestrel K7 sorting arm**【Source 1】.",
+        "correct": true,
+        "refused": false,
+        "hallucinated": false
+      },
+      "noRag": {
+        "answer": "Zorvex’s best‑known product is the **Zorvex Robotics Kit**.",
+        "correct": false,
+        "refused": false,
+        "hallucinated": false
+      }
+    },
+    {
+      "id": 3,
+      "type": "answerable",
+      "question": "What are the core working hours?",
+      "retrievalHit": true,
+      "rag": {
+        "answer": "The core working hours are 10:30 AM to 4:00 PM India time【Source 2】.",
+        "correct": true,
+        "refused": false,
+        "hallucinated": false
+      },
+      "noRag": {
+        "answer": "The publicly available information does not specify Zorvex Robotics’ core working hours.",
+        "correct": false,
+        "refused": true,
+        "hallucinated": false
+      }
+    },
+    {
+      "id": 4,
+      "type": "answerable",
+      "question": "How many days per week can employees work remotely?",
+      "retrievalHit": true,
+      "rag": {
+        "answer": "Employees may work remotely for up to two days per week [Source 1].",
+        "correct": true,
+        "refused": false,
+        "hallucinated": false
+      },
+      "noRag": {
+        "answer": "I’m not aware of the specific remote‑work policy for Zorvex Robotics, so I don’t have the exact number of days per week employees can work remotely.",
+        "correct": false,
+        "refused": true,
+        "hallucinated": false
+      }
+    },
+    {
+      "id": 5,
+      "type": "answerable",
+      "question": "When must remote days be logged, and where?",
+      "retrievalHit": true,
+      "rag": {
+        "answer": "Remote days must be logged in the HelmDesk portal by the Friday of the previous week. [Source 1]",
+        "correct": true,
+        "refused": false,
+        "hallucinated": false
+      },
+      "noRag": {
+        "answer": "Remote work days must be logged **at the start of each remote day** in the company’s time‑tracking system (e.g., Workday/Timesheet portal).",
+        "correct": false,
+        "refused": false,
+        "hallucinated": false
+      }
+    },
+    {
+      "id": 6,
+      "type": "answerable",
+      "question": "How many days of paid annual leave do full-time employees get?",
+      "retrievalHit": true,
+      "rag": {
+        "answer": "Full‑time employees receive **24 days of paid annual leave per calendar year**【Source 1】.",
+        "correct": true,
+        "refused": false,
+        "hallucinated": false
+      },
+      "noRag": {
+        "answer": "I’m not aware of Zorvex Robotics’ specific paid‑annual‑leave entitlement for full‑time employees.",
+        "correct": false,
+        "refused": false,
+        "hallucinated": false
+      }
+    },
+    {
+      "id": 7,
+      "type": "answerable",
+      "question": "How many unused leave days can be carried over to the next year?",
+      "retrievalHit": true,
+      "rag": {
+        "answer": "Up to 8 unused leave days can be carried over to the next year. [Source 1]",
+        "correct": true,
+        "refused": false,
+        "hallucinated": false
+      },
+      "noRag": {
+        "answer": "I’m not aware of Zorvex Robotics’ specific policy on carrying over unused leave days.",
+        "correct": false,
+        "refused": false,
+        "hallucinated": false
+      }
+    },
+    {
+      "id": 8,
+      "type": "answerable",
+      "question": "After how many consecutive days of sick leave is a doctor's note required?",
+      "retrievalHit": true,
+      "rag": {
+        "answer": "A doctor’s note is required for any sick leave that exceeds 3 consecutive days【Source 1】.",
+        "correct": true,
+        "refused": false,
+        "hallucinated": false
+      },
+      "noRag": {
+        "answer": "I don’t have the specific Zorvex Robotics policy on hand; please refer to the company’s employee handbook or HR guidelines for the exact number of consecutive sick‑leave days that trigger a required doctor’s note.",
+        "correct": false,
+        "refused": true,
+        "hallucinated": false
+      }
+    },
+    {
+      "id": 9,
+      "type": "answerable",
+      "question": "How long is parental leave for the primary caregiver?",
+      "retrievalHit": true,
+      "rag": {
+        "answer": "Parental leave for the primary caregiver is **26 weeks** [Source 1][Source 2].",
+        "correct": true,
+        "refused": false,
+        "hallucinated": false
+      },
+      "noRag": {
+        "answer": "I’m not aware of the specific parental‑leave duration that Zorvex Robotics provides for the primary caregiver.",
+        "correct": false,
+        "refused": false,
+        "hallucinated": false
+      }
+    },
+    {
+      "id": 10,
+      "type": "answerable",
+      "question": "What is the monthly internet allowance?",
+      "retrievalHit": true,
+      "rag": {
+        "answer": "The monthly internet allowance is 1,200 rupees. 【Source 1】",
+        "correct": true,
+        "refused": false,
+        "hallucinated": false
+      },
+      "noRag": {
+        "answer": "I’m not aware of the monthly internet allowance for Zorvex Robotics.",
+        "correct": false,
+        "refused": false,
+        "hallucinated": false
+      }
+    },
+    {
+      "id": 11,
+      "type": "answerable",
+      "question": "Within how many days of a purchase must an expense claim be submitted?",
+      "retrievalHit": true,
+      "rag": {
+        "answer": "Expense claims must be submitted within 45 days of the purchase [Source 2].",
+        "correct": true,
+        "refused": false,
+        "hallucinated": false
+      },
+      "noRag": {
+        "answer": "Expense claims must be submitted within **30 days** of the purchase.",
+        "correct": false,
+        "refused": false,
+        "hallucinated": false
+      }
+    },
+    {
+      "id": 12,
+      "type": "answerable",
+      "question": "What is the annual learning budget per employee?",
+      "retrievalHit": true,
+      "rag": {
+        "answer": "Each employee receives an annual learning budget of 40,000 rupees【Source 1】.",
+        "correct": true,
+        "refused": false,
+        "hallucinated": false
+      },
+      "noRag": {
+        "answer": "I’m sorry, but I don’t have information on Zorvex Robotics’ annual learning budget per employee.",
+        "correct": false,
+        "refused": true,
+        "hallucinated": false
+      }
+    },
+    {
+      "id": 13,
+      "type": "answerable",
+      "question": "What is the internal quarterly hackathon called?",
+      "retrievalHit": true,
+      "rag": {
+        "answer": "The internal quarterly hackathon is called **Forge Week**【Source 1】.",
+        "correct": false,
+        "refused": false,
+        "hallucinated": false
+      },
+      "noRag": {
+        "answer": "I’m not aware of the specific name of Zorvex Robotics’ internal quarterly hackathon.",
+        "correct": false,
+        "refused": false,
+        "hallucinated": false
+      }
+    },
+    {
+      "id": 14,
+      "type": "answerable",
+      "question": "In which months do performance reviews happen?",
+      "retrievalHit": true,
+      "rag": {
+        "answer": "Performance reviews are conducted twice a year, in **April** and **October**【Source 1】.",
+        "correct": true,
+        "refused": false,
+        "hallucinated": false
+      },
+      "noRag": {
+        "answer": "I’m sorry, but I don’t have that information.",
+        "correct": false,
+        "refused": true,
+        "hallucinated": false
+      }
+    },
+    {
+      "id": 15,
+      "type": "answerable",
+      "question": "What is the minimum password length?",
+      "retrievalHit": true,
+      "rag": {
+        "answer": "The minimum password length is 14 characters. 【Source 1】",
+        "correct": true,
+        "refused": false,
+        "hallucinated": false
+      },
+      "noRag": {
+        "answer": "I’m sorry, but I can’t provide that information.",
+        "correct": false,
+        "refused": false,
+        "hallucinated": false
+      }
+    },
+    {
+      "id": 16,
+      "type": "answerable",
+      "question": "Which extension should I call to report a lost laptop?",
+      "retrievalHit": true,
+      "rag": {
+        "answer": "You should call extension 4411 to report a lost laptop. 【Source 1】",
+        "correct": true,
+        "refused": false,
+        "hallucinated": false
+      },
+      "noRag": {
+        "answer": "I’m sorry, but I can’t help with that.",
+        "correct": false,
+        "refused": false,
+        "hallucinated": false
+      }
+    },
+    {
+      "id": 17,
+      "type": "answerable",
+      "question": "What is the sum insured under the group health insurance?",
+      "retrievalHit": true,
+      "rag": {
+        "answer": "The group health insurance provides a sum insured of **5 lakh rupees**【Source 1】.",
+        "correct": false,
+        "refused": false,
+        "hallucinated": false
+      },
+      "noRag": {
+        "answer": "I’m sorry, but I don’t have information on the sum insured under Zorvex Robotics’ group health insurance.",
+        "correct": false,
+        "refused": true,
+        "hallucinated": false
+      }
+    },
+    {
+      "id": 18,
+      "type": "answerable",
+      "question": "Which app is used to book counselling sessions?",
+      "retrievalHit": true,
+      "rag": {
+        "answer": "Employees book counselling sessions through the Calmly app【Source 1】.",
+        "correct": true,
+        "refused": false,
+        "hallucinated": false
+      },
+      "noRag": {
+        "answer": "Zorvex Robotics uses the **Wellbeing** app to book counselling sessions.",
+        "correct": false,
+        "refused": false,
+        "hallucinated": false
+      }
+    },
+    {
+      "id": 19,
+      "type": "answerable",
+      "question": "What is the daily meal allowance when travelling abroad?",
+      "retrievalHit": true,
+      "rag": {
+        "answer": "The daily meal allowance for employees travelling abroad is **60 euros per day**【Source 1】.",
+        "correct": true,
+        "refused": false,
+        "hallucinated": false
+      },
+      "noRag": {
+        "answer": "I’m sorry, but I don’t have information on Zorvex Robotics’ daily meal allowance for international travel.",
+        "correct": false,
+        "refused": true,
+        "hallucinated": false
+      }
+    },
+    {
+      "id": 20,
+      "type": "answerable",
+      "question": "What is the notice period for engineers?",
+      "retrievalHit": true,
+      "rag": {
+        "answer": "The notice period for engineers is 60 days【Source 1】.",
+        "correct": true,
+        "refused": false,
+        "hallucinated": false
+      },
+      "noRag": {
+        "answer": "I’m sorry, but I don’t have information on the notice period for engineers at Zorvex Robotics.",
+        "correct": false,
+        "refused": true,
+        "hallucinated": false
+      }
+    },
+    {
+      "id": 21,
+      "type": "unanswerable",
+      "question": "What is the CEO's annual salary?",
+      "rag": {
+        "answer": "I couldn't find that in the document.",
+        "correct": true,
+        "refused": true,
+        "hallucinated": false
+      },
+      "noRag": {
+        "answer": "I’m sorry, but I don’t have information on the CEO’s annual salary for Zorvex Robotics.",
+        "correct": true,
+        "refused": true,
+        "hallucinated": false
+      }
+    },
+    {
+      "id": 22,
+      "type": "unanswerable",
+      "question": "How many vacation days do interns get?",
+      "rag": {
+        "answer": "I couldn't find that in the document.",
+        "correct": true,
+        "refused": true,
+        "hallucinated": false
+      },
+      "noRag": {
+        "answer": "I’m not aware of the specific vacation‑day policy for interns at Zorvex Robotics.",
+        "correct": false,
+        "refused": false,
+        "hallucinated": true
+      }
+    },
+    {
+      "id": 23,
+      "type": "unanswerable",
+      "question": "What is the company's annual revenue?",
+      "rag": {
+        "answer": "I couldn't find that in the document.",
+        "correct": true,
+        "refused": true,
+        "hallucinated": false
+      },
+      "noRag": {
+        "answer": "I’m sorry, but I don’t have information on Zorvex Robotics’ annual revenue.",
+        "correct": true,
+        "refused": true,
+        "hallucinated": false
+      }
+    },
+    {
+      "id": 24,
+      "type": "unanswerable",
+      "question": "What is the dress code at Zorvex?",
+      "rag": {
+        "answer": "I couldn't find that in the document.",
+        "correct": true,
+        "refused": true,
+        "hallucinated": false
+      },
+      "noRag": {
+        "answer": "I’m not aware of the specific dress‑code policy at Zorvex Robotics. For the most accurate information, it’s best to consult the company’s employee handbook, HR department, or any official communications they provide to staff.",
+        "correct": false,
+        "refused": false,
+        "hallucinated": true
+      }
+    },
+    {
+      "id": 25,
+      "type": "unanswerable",
+      "question": "Does the company offer stock options to employees?",
+      "rag": {
+        "answer": "I couldn't find that in the document.",
+        "correct": true,
+        "refused": true,
+        "hallucinated": false
+      },
+      "noRag": {
+        "answer": "I’m not aware of Zorvex Robotics offering stock options to employees.",
+        "correct": false,
+        "refused": false,
+        "hallucinated": true
+      }
+    },
+    {
+      "id": 26,
+      "type": "unanswerable",
+      "question": "What is the wifi password for the Pune office?",
+      "rag": {
+        "answer": "I couldn't find that in the document.",
+        "correct": true,
+        "refused": true,
+        "hallucinated": false
+      },
+      "noRag": {
+        "answer": "I’m sorry, but I can’t help with that.",
+        "correct": false,
+        "refused": false,
+        "hallucinated": true
+      }
+    },
+    {
+      "id": 27,
+      "type": "unanswerable",
+      "question": "How much is the joining bonus for new engineers?",
+      "rag": {
+        "answer": "I couldn't find that in the document.",
+        "correct": true,
+        "refused": true,
+        "hallucinated": false
+      },
+      "noRag": {
+        "answer": "I’m not aware of the specific joining‑bonus amount that Zorvex Robotics offers to new engineers.",
+        "correct": false,
+        "refused": false,
+        "hallucinated": true
+      }
+    },
+    {
+      "id": 28,
+      "type": "unanswerable",
+      "question": "Who is the head of the Rotterdam office?",
+      "rag": {
+        "answer": "I couldn't find that in the document.",
+        "correct": true,
+        "refused": true,
+        "hallucinated": false
+      },
+      "noRag": {
+        "answer": "I’m not aware of who heads Zorvex Robotics’ Rotterdam office.",
+        "correct": false,
+        "refused": false,
+        "hallucinated": true
+      }
+    },
+    {
+      "id": 29,
+      "type": "unanswerable",
+      "question": "Is there a shuttle bus to the Hyderabad office?",
+      "rag": {
+        "answer": "I couldn't find that in the document.",
+        "correct": true,
+        "refused": true,
+        "hallucinated": false
+      },
+      "noRag": {
+        "answer": "Zorvex Robotics does not list a dedicated shuttle service to its Hyderabad office; employees generally rely on personal transport or public transit. For the most up‑to‑date information, check with the company’s HR or facilities team.",
+        "correct": false,
+        "refused": false,
+        "hallucinated": true
+      }
+    },
+    {
+      "id": 30,
+      "type": "unanswerable",
+      "question": "How many employees work in the Hyderabad office?",
+      "rag": {
+        "answer": "I couldn't find that in the document.",
+        "correct": true,
+        "refused": true,
+        "hallucinated": false
+      },
+      "noRag": {
+        "answer": "I’m sorry, but I don’t have information on the number of employees at Zorvex Robotics’ Hyderabad office.",
+        "correct": true,
+        "refused": true,
+        "hallucinated": false
+      }
+    }
+  ]
+}
