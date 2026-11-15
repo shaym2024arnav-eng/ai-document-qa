@@ -98,7 +98,7 @@ router.post("/upload", uploadPdf, async (req, res) => {
     return res.status(500).json({ message: "Failed to process the document" });
   } finally {
     // Always remove the temporary upload, even when processing fails.
-    fs.rm(req.file.path, { force: true }, () => {});
+    fs.rmSync(req.file.path, { force: true });
   }
 });
 

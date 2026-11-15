@@ -1,13 +1,12 @@
-const { pipeline } = require("@xenova/transformers");
-
 let embedder = null;
 
+// @xenova/transformers is an ES module, so it is loaded with import()
+// the first time an embedding is needed. This also keeps server start-up
+// fast: the library and model only load on the first upload or question.
 async function getEmbedder() {
   if (!embedder) {
-    embedder = await pipeline(
-      "feature-extraction",
-      "Xenova/all-MiniLM-L6-v2"
-    );
+    const { pipeline } = await import("@xenova/transformers");
+    embedder = await pipeline("feature-extraction", "Xenova/all-MiniLM-L6-v2");
   }
   return embedder;
 }
